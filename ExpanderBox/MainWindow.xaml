@@ -10,8 +10,18 @@
         d:DataContext="{d:DesignInstance local:Person}"
         mc:Ignorable="d">
     <Grid>
-        <Expander Header="{Binding FirstName}">
-            <TextBlock Text="{Binding Lastname}" />
-        </Expander>
+        <Border BorderBrush="Blue" BorderThickness="1">
+            <Expander Header="{Binding}">
+                <Expander.HeaderTemplate>
+                    <DataTemplate DataType="{x:Type local:Person}">
+                        <Border BorderBrush="Red" BorderThickness="1"
+                                local:ParentContentPresenter.HorizontalAlignment="Stretch">
+                            <TextBlock Text="{Binding FirstName}" />
+                        </Border>
+                    </DataTemplate>
+                </Expander.HeaderTemplate>
+                <TextBlock Text="{Binding Lastname}" />
+            </Expander>
+        </Border>
     </Grid>
 </Window>
